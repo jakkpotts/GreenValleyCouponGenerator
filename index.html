@@ -172,67 +172,35 @@
     </div>
   </div>
 
-  <script>
-    function generateCoupon() {
-      const brand = document.getElementById("brand").value.trim();
-      const product = document.getElementById("product").value.trim();
-      const barcode = document.getElementById("barcode").value.trim();
-      const address = document.getElementById("address").value.trim();
-
-      if (!/^[0-9]{12}$/.test(barcode)) {
-        alert("Barcode must be exactly 12 digits.");
-        return;
-      }
-
-      const now = new Date();
-      const expires = new Date(now.getTime() + 6 * 60000 + 34000);
-      const formatted = expires.toLocaleString("en-US", {
-        month: "2-digit", day: "2-digit", year: "2-digit",
-        hour: "2-digit", minute: "2-digit", hour12: true
+<script>
+  function fillLocationFromGPS() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(pos => {
+        const lat = pos.coords.latitude;
+        const lon = pos.coords.longitude;
+        fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`)
+          .then(res => res.json())
+          .then(data => {
+            const addr = data.address;
+            // Build a consistently formatted address string
+            const street = addr.road || "";
+            const house = addr.house_number || "";
+            const city = addr.city || addr.town || addr.village || "";
+            const state = addr.state || "";
+            const postcode = addr.postcode || "";
+            const formatted = `${house} ${street}, ${city}, ${state} ${postcode}`.trim().replace(/^, | ,/g, "");
+            document.getElementById("address").value = formatted;
+          })
+          .catch(() => {
+            document.getElementById("address").value = `${lat.toFixed(4)}, ${lon.toFixed(4)}`;
+          });
+      }, () => {
+        alert("Unable to retrieve your location.");
       });
-
-      document.getElementById("brand-text").textContent = brand;
-      document.getElementById("product-text").textContent = product;
-      document.getElementById("barcode-img").src =
-        `https://barcode.tec-it.com/barcode.ashx?data=${barcode}&code=UPCA&dpi=96&translate-esc=false&hidehrt=true`;
-      document.getElementById("expires-at").textContent = formatted;
-      document.getElementById("location").textContent = address || "Address not provided.";
-
-      document.getElementById("coupon-card").style.display = "block";
-      document.getElementById("form-container").style.display = "none";
-
-      let seconds = 6 * 60 + 34;
-      const timerEl = document.getElementById("timer");
-      clearInterval(window._timerInterval);
-      window._timerInterval = setInterval(() => {
-        if (seconds <= 0) return;
-        seconds--;
-        const m = String(Math.floor(seconds / 60)).padStart(2, "0");
-        const s = String(seconds % 60).padStart(2, "0");
-        timerEl.textContent = `${m}:${s}`;
-      }, 1000);
+    } else {
+      alert("Geolocation is not supported by your browser.");
     }
-
-    function fillLocationFromGPS() {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(pos => {
-          const lat = pos.coords.latitude;
-          const lon = pos.coords.longitude;
-          fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`)
-            .then(res => res.json())
-            .then(data => {
-              document.getElementById("address").value = data.display_name || `${lat.toFixed(4)}, ${lon.toFixed(4)}`;
-            })
-            .catch(() => {
-              document.getElementById("address").value = `${lat.toFixed(4)}, ${lon.toFixed(4)}`;
-            });
-        }, () => {
-          alert("Unable to retrieve your location.");
-        });
-      } else {
-        alert("Geolocation is not supported by your browser.");
-      }
-    }
-  </script>
+  }
+</script>
 </body>
 </html>
