@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wynn Las Vegas - Alan's June Rewards</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Georgia, 'Times New Roman', serif;
+            background: #f5f1e8;
+            color: #5a4a3a;
+            line-height: 1.4;
+            font-size: 14px;
+        }
+        
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background: #fefcf7;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        .decorative-corner {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 80px;
+            height: 120px;
+            background: #8b6914;
+            clip-path: polygon(40% 0%, 100% 0%, 100% 100%);
+            z-index: 1;
+        }
+        
+        .header {
+            padding: 30px 20px 25px 20px;
+            text-align: left;
+            position: relative;
+            background: #fefcf7;
+        }
+        
+        .logo {
+            font-size: 32px;
+            font-weight: normal;
+            font-style: italic;
+            color: #8b6914;
+            margin-bottom: 25px;
+            font-family: 'Brush Script MT', cursive;
+        }
+        
+        .main-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #5a4a3a;
+            margin-bottom: 8px;
+            font-family: Georgia, serif;
+        }
+        
+        .offer-highlight {
+            margin-bottom: 20px;
+        }
+        
+        .enjoy-text {
+            font-size: 16px;
+            color: #5a4a3a;
+            margin-bottom: 2px;
+        }
+        
+        .amount-line {
+            margin-bottom: 2px;
+        }
+        
+        .amount-highlight {
+            font-size: 28px;
+            font-weight: bold;
+            color: #5a4a3a;
+        }
+        
+        .free-credit {
+            font-size: 16px;
+            color: #5a4a3a;
+        }
+        
+        .period-text {
+            font-size: 14px;
+            color: #5a4a3a;
+            line-height: 1.3;
+        }
+        
+        .main-content {
+            padding: 0 20px 25px 20px;
+        }
+        
+        .greeting {
+            margin-bottom: 18px;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #5a4a3a;
+        }
+        
+        .offer-details {
+            background: #f8f5f0;
+            padding: 18px;
+            margin-bottom: 20px;
+            border-left: 3px solid #c9b037;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #5a4a3a;
+        }
+        
+        .instructions {
+            margin-bottom: 20px;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #5a4a3a;
+        }
+        
+        .signature-section {
+            margin-bottom: 25px;
+        }
+        
+        .signature {
+            font-size: 24px;
+            font-style: italic;
+            color: #5a4a3a;
+            margin-bottom: 5px;
+            font-family: 'Brush Script MT', cursive;
+        }
+        
+        .signature-title {
+            font-size: 12px;
+            color: #5a4a3a;
+        }
+        
+        .calendar-section {
+            margin-bottom: 30px;
+        }
+        
+        .calendar-title {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #5a4a3a;
+            font-family: Georgia, serif;
+        }
+        
+        .calendar {
+            background: white;
+            border: 1px solid #e0d5c4;
+        }
+        
+        .calendar-header {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            background: white;
+            border-bottom: 1px solid #e0d5c4;
+        }
+        
+        .calendar-header div {
+            padding: 12px 8px;
+            text-align: center;
+            font-size: 12px;
+            font-weight: bold;
+            color: #5a4a3a;
+            border-right: 1px solid #e0d5c4;
+        }
+        
+        .calendar-header div:last-child {
+            border-right: none;
+        }
+        
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+        }
+        
+        .calendar-day {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-right: 1px solid #e0d5c4;
+            border-bottom: 1px solid #e0d5c4;
+            font-size: 14px;
+            color: #5a4a3a;
+            background: white;
+        }
+        
+        .calendar-day:nth-child(7n) {
+            border-right: none;
+        }
+        
+        .calendar-day.other-month {
+            color: #ccc;
+        }
+        
+        .calendar-day.highlight {
+            background: #8b6914;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .calendar-day.today {
+            background: #d4af37;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .legend {
+            margin-top: 15px;
+            padding: 15px;
+            background: #f8f5f0;
+            border-left: 3px solid #8b6914;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: flex-start;
+            font-size: 12px;
+            color: #5a4a3a;
+            line-height: 1.4;
+        }
+        
+        .legend-color {
+            width: 14px;
+            height: 14px;
+            margin-right: 10px;
+            margin-top: 2px;
+            flex-shrink: 0;
+            background: #8b6914;
+        }
+        
+        .redemption-info {
+            background: #f8f5f0;
+            padding: 18px;
+            margin-bottom: 25px;
+            border-left: 3px solid #c9b037;
+        }
+        
+        .redemption-info h3 {
+            color: #5a4a3a;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        .redemption-info p {
+            font-size: 14px;
+            line-height: 1.5;
+            color: #5a4a3a;
+        }
+        
+        .footer {
+            background: #8b6914;
+            color: white;
+            padding: 25px 20px;
+            text-align: center;
+        }
+        
+        .exclusive-text {
+            font-size: 12px;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+        
+        .player-name {
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .rewards-number {
+            font-size: 12px;
+            margin-bottom: 15px;
+        }
+        
+        .terms-text {
+            font-size: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .social-icon {
+            width: 32px;
+            height: 32px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        .legal-text {
+            font-size: 10px;
+            opacity: 0.8;
+            line-height: 1.3;
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                max-width: 100%;
+                margin: 0;
+            }
+            
+            .header {
+                padding: 25px 15px 20px 15px;
+            }
+            
+            .main-content {
+                padding: 0 15px 20px 15px;
+            }
+            
+            .footer {
+                padding: 20px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="decorative-corner"></div>
+        
+        <div class="header">
+            <div class="logo">Wynn</div>
+            
+            <h1 class="main-title">Alan's<br>June Rewards</h1>
+            
+            <div class="offer-highlight">
+                <div class="enjoy-text">Enjoy</div>
+                <div class="amount-line">
+                    <span class="amount-highlight">$2000</span>
+                    <span class="free-credit">in FREE CREDIT</span>
+                </div>
+                <div class="period-text">each Monday through Thursday,<br>June 2 through June 26, 2025.</div>
+            </div>
+        </div>
+        
+        <div class="main-content">
+            <div class="greeting">
+                <strong>Dear Alan Porter,</strong>
+            </div>
+            
+            <div class="greeting">
+                We're writing to say thank you for visiting Wynn Las Vegas, and we'd like to invite you back to enjoy our resort.
+            </div>
+            
+            <div class="offer-details">
+                Each week, Monday through Thursday, June 2 through June 26, 2025 we'll upload <strong>$2000</strong> in <strong>FREE CREDIT</strong> onto your Wynn Rewards account, which you can redeem at slot machines at Wynn Las Vegas and Encore at Wynn Las Vegas.
+            </div>
+            
+            <div class="instructions">
+                To redeem your <strong>FREE CREDIT</strong>, simply insert your Wynn Rewards card into your favorite slot machine, enter your PIN, and start playing. Be sure to use the <strong>FREE CREDIT</strong> each week, as it will expire each Thursday at 11:59 p.m.
+            </div>
+            
+            <div class="instructions">
+                Thank you for visiting us. If you have any questions, please don't hesitate to call us at (702) 770-3000.
+            </div>
+            
+            <div class="signature-section">
+                <div class="instructions"><strong>Sincerely,</strong></div>
+                <div class="signature">Charlie Stone</div>
+                <div class="signature-title">EVP Casino Ops and Marketing</div>
+            </div>
+            
+            <div class="calendar-section">
+                <h2 class="calendar-title">June</h2>
+                <div class="calendar">
+                    <div class="calendar-header">
+                        <div>S</div>
+                        <div>M</div>
+                        <div>T</div>
+                        <div>W</div>
+                        <div>T</div>
+                        <div>F</div>
+                        <div>S</div>
+                    </div>
+                    <div class="calendar-grid">
+                        <div class="calendar-day">1</div>
+                        <div class="calendar-day highlight">2</div>
+                        <div class="calendar-day highlight">3</div>
+                        <div class="calendar-day highlight">4</div>
+                        <div class="calendar-day highlight">5</div>
+                        <div class="calendar-day today">6</div>
+                        <div class="calendar-day">7</div>
+                        
+                        <div class="calendar-day">8</div>
+                        <div class="calendar-day highlight">9</div>
+                        <div class="calendar-day highlight">10</div>
+                        <div class="calendar-day highlight">11</div>
+                        <div class="calendar-day highlight">12</div>
+                        <div class="calendar-day">13</div>
+                        <div class="calendar-day">14</div>
+                        
+                        <div class="calendar-day">15</div>
+                        <div class="calendar-day highlight">16</div>
+                        <div class="calendar-day highlight">17</div>
+                        <div class="calendar-day highlight">18</div>
+                        <div class="calendar-day highlight">19</div>
+                        <div class="calendar-day">20</div>
+                        <div class="calendar-day">21</div>
+                        
+                        <div class="calendar-day">22</div>
+                        <div class="calendar-day highlight">23</div>
+                        <div class="calendar-day highlight">24</div>
+                        <div class="calendar-day highlight">25</div>
+                        <div class="calendar-day highlight">26</div>
+                        <div class="calendar-day">27</div>
+                        <div class="calendar-day">28</div>
+                        
+                        <div class="calendar-day">29</div>
+                        <div class="calendar-day">30</div>
+                        <div class="calendar-day other-month">1</div>
+                        <div class="calendar-day other-month">2</div>
+                        <div class="calendar-day other-month">3</div>
+                        <div class="calendar-day other-month">4</div>
+                        <div class="calendar-day other-month">5</div>
+                    </div>
+                </div>
+                
+                <div class="legend">
+                    <div class="legend-item">
+                        <div class="legend-color"></div>
+                        <div>
+                            <strong>$2000 in FREE CREDIT</strong><br>
+                            Monday through Thursday<br><br>
+                            Use the FREE CREDIT each week, as it will expire each Thursday at 11:59 p.m.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="redemption-info">
+                <h3>Redeem your FREE CREDIT by</h3>
+                <p>inserting your Wynn Rewards card into your favorite slot machine, enter your PIN, and start playing.</p>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div class="exclusive-text">
+                This offer is exclusively for<br>
+                <div class="player-name">Alan Porter</div>
+            </div>
+            
+            <div class="rewards-number">
+                Wynn Rewards #: 1451851
+            </div>
+            
+            <div class="terms-text">
+                Terms and Conditions apply. ►
+            </div>
+            
+            <div class="social-icons">
+                <a href="#" class="social-icon">f</a>
+                <a href="#" class="social-icon">t</a>
+                <a href="#" class="social-icon">i</a>
+                <a href="#" class="social-icon">in</a>
+                <a href="#" class="social-icon">yt</a>
+            </div>
+            
+            <div class="legal-text">
+                © 2025 Wynn Las Vegas, LLC. All rights reserved.<br>
+                Wynn Las Vegas | Responsible Gaming | Privacy<br><br>
+                Products sold on this site are for adults 21 years of age and older.<br>
+                Please play responsibly. For assistance, call 1-800-522-4700.
+            </div>
+        </div>
+    </div>
+</body>
+  </html>
