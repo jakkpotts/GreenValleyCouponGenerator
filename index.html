@@ -89,7 +89,7 @@
       border-radius: 50%;
       border: 8px solid #e0e0e0;
       border-top-color: #1e7f3f;
-      animation: spin 60s linear infinite;
+      animation: spin 10s linear infinite;
       margin: 0 auto 16px;
     }
     @keyframes spin {
@@ -175,7 +175,7 @@
     function generateCoupon() {
       const select = document.getElementById("product-select");
       const [barcode, product] = select.value.split("|");
-      const brand = "SIGNATURE";
+      const brand = "";
       const address = document.getElementById("address").value.trim();
 
       const now = new Date();
