@@ -149,13 +149,15 @@
     <select id="product-select">
       <option value="489146011192|BODYARMOR I.V.">Bodyarmor I.V.</option>
       <option value="489146012311|COSTA">Costa Iced Coffee</option>
-    </select><label for="address">Store Location</label>
-<input type="text" id="address" placeholder="e.g. 123 Main St" value="4919 W. Sahara Ave, Las Vegas, NV 89146"/>
-<button type="button" class="geo-btn" onclick="fillLocationFromGPS()">Use My Current Location</button>
+      <option value="489146012137|HARIBO GUMMY BEARS 2OZ">Haribo Gummy Bears 2oz</option>
+    </select>
+    <label for="address">Store Location</label>
+    <input type="text" id="address" placeholder="e.g. 123 Main St" value="4919 W. Sahara Ave, Las Vegas, NV 89146"/>
+    <button type="button" class="geo-btn" onclick="fillLocationFromGPS()">Use My Current Location</button>
+    <button onclick="generateCoupon()">Generate Coupon</button>
+  </div>
 
-<button onclick="generateCoupon()">Generate Coupon</button>
-
-  </div>  <div class="card" id="coupon-card" style="display: none;">
+  <div class="card" id="coupon-card" style="display: none;">
     <div class="header">
       <div class="brand" id="brand-text">SIGNATURE</div>
       <div class="product" id="product-text"></div>
@@ -171,7 +173,9 @@
       <button class="btn btn-decline" onclick="resetForm()">Coupon Not Accepted</button>
       <button class="btn btn-accept" onclick="celebrateAndReset()">Coupon Accepted</button>
     </div>
-  </div>  <script>
+  </div>
+
+  <script>
     function generateCoupon() {
       const select = document.getElementById("product-select");
       const [barcode, product] = select.value.split("|");
@@ -249,5 +253,6 @@
         alert("Geolocation is not supported by your browser.");
       }
     }
-  </script></body>
+  </script>
+</body>
 </html>
