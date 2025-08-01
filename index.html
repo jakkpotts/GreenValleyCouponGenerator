@@ -6,7 +6,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <style>
     body {
-      background: #f3f4f6;
+      background: #e5e5e5;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
       padding: 24px;
       margin: 0;
@@ -51,87 +51,172 @@
     }
     .card {
       background: #fff;
-      border-radius: 24px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-      padding: 20px;
-      max-width: 420px;
+      border-radius: 20px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+      max-width: 380px;
       width: 100%;
-      text-align: center;
+      overflow: hidden;
     }
     .header {
-      background: linear-gradient(to right, #1e7f3f, #3cb94b);
-      border-radius: 16px;
-      padding: 16px;
+      background: linear-gradient(to right, #22a549, #7eba3a, #f39c12);
+      padding: 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .header::before,
+    .header::after {
+      content: "";
+      position: absolute;
+      width: 50px;
+      height: 70px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 120'%3E%3Cpath d='M25 30 L35 90 L65 90 L75 30 Z' fill='rgba(255,255,255,0.3)' stroke='rgba(255,255,255,0.5)' stroke-width='2'/%3E%3Cpath d='M20 25 L80 25 L80 35 L20 35 Z' fill='rgba(255,255,255,0.4)'/%3E%3Cellipse cx='50' cy='30' rx='30' ry='5' fill='rgba(255,255,255,0.2)'/%3E%3Cpath d='M50 10 L50 25' stroke='rgba(255,255,255,0.5)' stroke-width='3'/%3E%3Cpath d='M35 45 Q35 50 40 50 L60 50 Q65 50 65 45' fill='none' stroke='rgba(255,255,255,0.3)' stroke-width='2'/%3E%3C/svg%3E");
+      background-size: contain;
+      background-repeat: no-repeat;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .header::before {
+      left: 20px;
+    }
+    .header::after {
+      right: 20px;
+    }
+    .brand-logo {
+      font-size: 15px;
       color: white;
-      margin-bottom: 16px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      margin-bottom: 5px;
     }
-    .header .brand {
-      font-size: 13px;
-      letter-spacing: 1px;
+    .offer-text {
+      background: white;
+      padding: 15px 20px;
+      text-align: center;
+      border-bottom: 1px solid #e0e0e0;
     }
-    .header .product {
-      font-size: 26px;
-      font-weight: bold;
+    .offer-main {
+      font-size: 22px;
+      font-weight: 600;
+      color: #1a1a1a;
+      margin-bottom: 8px;
+    }
+    .offer-subtitle {
+      background: #e3f2fd;
+      color: #1976d2;
+      padding: 6px 16px;
+      border-radius: 20px;
+      display: inline-block;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .barcode-section {
+      background: #f5f5f5;
+      padding: 20px;
+      text-align: center;
     }
     .barcode-img {
-      margin-top: 12px;
       width: 100%;
-      max-width: 320px;
+      max-width: 280px;
+      height: 80px;
+      margin: 0 auto;
+      display: block;
     }
     .instruction {
-      font-size: 18px;
+      font-size: 22px;
       font-weight: 500;
-      margin: 24px 0;
+      color: #1a1a1a;
+      margin: 20px 0 25px;
+      text-align: center;
+      padding: 0 20px;
+    }
+    .timer-section {
+      text-align: center;
+      padding: 0 20px 20px;
+    }
+    .circle-timer-container {
+      position: relative;
+      width: 140px;
+      height: 140px;
+      margin: 0 auto 5px;
     }
     .circle-timer {
-      width: 120px;
-      height: 120px;
+      width: 140px;
+      height: 140px;
       border-radius: 50%;
       border: 8px solid #e0e0e0;
-      border-top-color: #1e7f3f;
-      animation: spin 10s linear infinite;
-      margin: 0 auto 16px;
+      position: relative;
     }
-    @keyframes spin {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
+    .circle-timer-progress {
+      position: absolute;
+      top: -8px;
+      left: -8px;
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 8px solid transparent;
+      border-top-color: #22a549;
+      transform: rotate(-90deg);
+      transition: transform 1s linear;
+    }
+    .timer-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
     }
     .timer {
-      font-family: -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
-      font-size: 42px;
+      font-size: 36px;
       font-weight: 600;
-      margin-bottom: 4px;
-      color: #1e1e1e;
+      color: #1a1a1a;
+      line-height: 1;
     }
-    .subtext {
-      font-size: 14px;
-      color: #555;
+    .timer-label {
+      font-size: 12px;
+      color: #666;
+      margin-top: 2px;
+    }
+    .expires-text {
+      font-size: 13px;
+      color: #666;
+      margin-top: 5px;
     }
     .location {
       font-size: 14px;
-      margin: 20px 0;
-      color: #333;
+      color: #666;
+      text-align: center;
+      padding: 15px 20px;
+      border-top: 1px solid #e0e0e0;
+    }
+    .location::before {
+      content: "📍 ";
     }
     .buttons {
       display: flex;
-      gap: 12px;
-      margin-top: 12px;
+      gap: 0;
+      border-top: 1px solid #e0e0e0;
     }
     .btn {
       flex: 1;
-      padding: 14px;
+      padding: 18px;
       border: none;
-      font-size: 14px;
-      font-weight: bold;
-      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 600;
       color: white;
       cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .btn:hover {
+      opacity: 0.9;
     }
     .btn-decline {
       background: #2c3e50;
+      border-radius: 0 0 0 20px;
     }
     .btn-accept {
-      background: #1e7f3f;
+      background: #22a549;
+      border-radius: 0 0 20px 0;
     }
     canvas {
       position: fixed;
@@ -154,25 +239,38 @@
       <option value="489146011338|LARGE FOUNTAIN DRINK">Large Fountain Drink</option>
     </select>
     <label for="address">Store Location</label>
-    <input type="text" id="address" placeholder="e.g. 123 Main St" value="4919 W. Sahara Ave, Las Vegas, NV 89146"/>
+    <input type="text" id="address" placeholder="e.g. 123 Main St" value="3680 S. Decatur Blvd, Las Vegas, NV 89103"/>
     <button type="button" class="geo-btn" onclick="fillLocationFromGPS()">Use My Current Location</button>
     <button onclick="generateCoupon()">Generate Coupon</button>
   </div>
 
   <div class="card" id="coupon-card" style="display: none;">
     <div class="header">
-      <div class="brand" id="brand-text">SIGNATURE</div>
-      <div class="product" id="product-text"></div>
+      <div class="brand-logo">Green Valley Grocery</div>
     </div>
-    <img class="barcode-img" id="barcode-img" />
+    <div class="offer-text">
+      <div class="offer-main" id="product-text">FREE One (1) Large Fountain Drink</div>
+      <div class="offer-subtitle">One Time Use Only</div>
+    </div>
+    <div class="barcode-section">
+      <img class="barcode-img" id="barcode-img" />
+    </div>
     <div class="instruction">Show your phone<br>to the cashier</div>
-    <div class="circle-timer"></div>
-    <div class="timer" id="timer">06:34</div>
-    <div class="subtext">minutes left to redeem</div>
-    <div class="subtext" id="expires-at"></div>
+    <div class="timer-section">
+      <div class="circle-timer-container">
+        <div class="circle-timer">
+          <div class="circle-timer-progress" id="timer-progress"></div>
+        </div>
+        <div class="timer-content">
+          <div class="timer" id="timer">14:43</div>
+          <div class="timer-label">minutes left to redeem</div>
+        </div>
+      </div>
+      <div class="expires-text" id="expires-at"></div>
+    </div>
     <div class="location" id="location">Loading...</div>
     <div class="buttons">
-      <button class="btn btn-decline" onclick="resetForm()">Coupon Not Accepted</button>
+      <button class="btn btn-decline" onclick="resetForm()">Coupon Not<br>Accepted</button>
       <button class="btn btn-accept" onclick="celebrateAndReset()">Coupon Accepted</button>
     </div>
   </div>
@@ -181,18 +279,34 @@
     function generateCoupon() {
       const select = document.getElementById("product-select");
       const [barcode, product] = select.value.split("|");
-      const brand = "";
       const address = document.getElementById("address").value.trim();
 
+      // Set initial timer to 14:43 (14 minutes and 43 seconds)
+      const initialSeconds = 14 * 60 + 43;
       const now = new Date();
-      const expires = new Date(now.getTime() + 6 * 60000 + 34000);
+      const expires = new Date(now.getTime() + initialSeconds * 1000);
       const formatted = expires.toLocaleString("en-US", {
         month: "2-digit", day: "2-digit", year: "2-digit",
         hour: "2-digit", minute: "2-digit", hour12: true
-      });
+      }).replace(/,/, '');
 
-      document.getElementById("brand-text").textContent = brand;
-      document.getElementById("product-text").textContent = product;
+      // Format product text for display
+      let displayText = "";
+      if (product === "LARGE FOUNTAIN DRINK") {
+        displayText = "FREE One (1) Large Fountain Drink";
+      } else if (product === "BODYARMOR I.V.") {
+        displayText = "FREE One (1) Bodyarmor I.V.";
+      } else if (product === "COSTA") {
+        displayText = "FREE One (1) Costa Iced Coffee";
+      } else if (product === "HARIBO GUMMY BEARS 2OZ") {
+        displayText = "FREE One (1) Haribo Gummy Bears 2oz";
+      } else if (product === "GATORADE WATER") {
+        displayText = "FREE One (1) Gatorade Water";
+      } else {
+        displayText = "FREE One (1) " + product;
+      }
+
+      document.getElementById("product-text").textContent = displayText;
       document.getElementById("barcode-img").src =
         `https://barcode.tec-it.com/barcode.ashx?data=${barcode}&code=UPCA&dpi=96&translate-esc=false&hidehrt=true`;
       document.getElementById("expires-at").textContent = formatted;
@@ -201,16 +315,33 @@
       document.getElementById("coupon-card").style.display = "block";
       document.getElementById("form-container").style.display = "none";
 
-      let seconds = 6 * 60 + 34;
+      let seconds = initialSeconds;
+      const totalSeconds = initialSeconds;
       const timerEl = document.getElementById("timer");
+      const progressEl = document.getElementById("timer-progress");
+      
       clearInterval(window._timerInterval);
-      window._timerInterval = setInterval(() => {
-        if (seconds <= 0) return;
+      
+      // Update timer immediately
+      updateTimer();
+      
+      window._timerInterval = setInterval(updateTimer, 1000);
+      
+      function updateTimer() {
+        if (seconds <= 0) {
+          clearInterval(window._timerInterval);
+          return;
+        }
         seconds--;
         const m = String(Math.floor(seconds / 60)).padStart(2, "0");
         const s = String(seconds % 60).padStart(2, "0");
         timerEl.textContent = `${m}:${s}`;
-      }, 1000);
+        
+        // Update progress circle
+        const progress = (totalSeconds - seconds) / totalSeconds;
+        const degrees = -90 + (progress * 360);
+        progressEl.style.transform = `rotate(${degrees}deg)`;
+      }
     }
 
     function resetForm() {
