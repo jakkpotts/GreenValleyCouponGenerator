@@ -243,19 +243,21 @@
       box-sizing: border-box;
       aspect-ratio: 1;
     }
-    .circle-timer-progress {
+    .circle-timer-svg {
       position: absolute;
       top: -6px;
       left: -6px;
       width: 120px;
       height: 120px;
-      border-radius: 50%;
-      border: 6px solid transparent;
-      border-top-color: #22a549;
       transform: rotate(-90deg);
-      transition: transform 1s linear;
-      box-sizing: border-box;
-      aspect-ratio: 1;
+    }
+    
+    .circle-timer-progress {
+      fill: none;
+      stroke: #22a549;
+      stroke-width: 6;
+      stroke-linecap: round;
+      transition: stroke-dashoffset 1s linear;
     }
     
     @media (min-width: 480px) {
@@ -268,13 +270,14 @@
         height: 140px;
         border: 8px solid #e0e0e0;
       }
-      .circle-timer-progress {
+      .circle-timer-svg {
         top: -8px;
         left: -8px;
         width: 140px;
         height: 140px;
-        border: 8px solid transparent;
-        border-top-color: #22a549;
+      }
+      .circle-timer-progress {
+        stroke-width: 8;
       }
     }
     .timer-content {
@@ -397,10 +400,15 @@
       <div class="timer-section">
         <div class="circle-timer-container">
           <div class="circle-timer">
-            <div class="circle-timer-progress" id="timer-progress"></div>
+            <svg class="circle-timer-svg" viewBox="0 0 120 120">
+              <circle class="circle-timer-progress" id="timer-progress" 
+                      cx="60" cy="60" r="54" 
+                      stroke-dasharray="339.292" 
+                      stroke-dashoffset="0"></circle>
+            </svg>
           </div>
           <div class="timer-content">
-            <div class="timer" id="timer">14:43</div>
+            <div class="timer" id="timer">15:00</div>
             <div class="timer-label">minutes left to redeem</div>
           </div>
         </div>
@@ -420,8 +428,8 @@
       const [barcode, product] = select.value.split("|");
       const address = document.getElementById("address").value.trim();
 
-      // Set initial timer to 14:43 (14 minutes and 43 seconds)
-      const initialSeconds = 14 * 60 + 43;
+      // Set initial timer to 15:00 (15 minutes exactly)
+      const initialSeconds = 15 * 60;
       const now = new Date();
       const expires = new Date(now.getTime() + initialSeconds * 1000);
       const formatted = expires.toLocaleString("en-US", {
@@ -461,6 +469,28 @@
       
       clearInterval(window._timerInterval);
       
+      // Initialize SVG circle for responsive design
+      const isDesktop = window.innerWidth >= 480;
+      const radius = isDesktop ? 62 : 54;
+      const circumference = 2 * Math.PI * radius;
+      
+      if (isDesktop) {
+        progressEl.setAttribute('r', '62');
+        progressEl.setAttribute('stroke-dasharray', circumference);
+        progressEl.parentElement.setAttribute('viewBox', '0 0 140 140');
+        progressEl.setAttribute('cx', '70');
+        progressEl.setAttribute('cy', '70');
+      } else {
+        progressEl.setAttribute('r', '54');
+        progressEl.setAttribute('stroke-dasharray', circumference);
+        progressEl.parentElement.setAttribute('viewBox', '0 0 120 120');
+        progressEl.setAttribute('cx', '60');
+        progressEl.setAttribute('cy', '60');
+      }
+      
+      // Set initial stroke-dashoffset to 0 (full circle)
+      progressEl.style.strokeDashoffset = "0";
+      
       // Update timer immediately
       updateTimer();
       
@@ -476,10 +506,29 @@
         const s = String(seconds % 60).padStart(2, "0");
         timerEl.textContent = `${m}:${s}`;
         
-        // Update progress circle
+        // Update progress circle (SVG stroke animation)
         const progress = (totalSeconds - seconds) / totalSeconds;
-        const degrees = -90 + (progress * 360);
-        progressEl.style.transform = `rotate(${degrees}deg)`;
+        // Calculate radius based on screen size (54 for mobile, 62 for desktop)
+        const isDesktop = window.innerWidth >= 480;
+        const radius = isDesktop ? 62 : 54;
+        const circumference = 2 * Math.PI * radius;
+        const offset = circumference * progress;
+        progressEl.style.strokeDashoffset = offset;
+        
+        // Update SVG attributes for responsive design
+        if (isDesktop) {
+          progressEl.setAttribute('r', '62');
+          progressEl.setAttribute('stroke-dasharray', circumference);
+          progressEl.parentElement.setAttribute('viewBox', '0 0 140 140');
+          progressEl.setAttribute('cx', '70');
+          progressEl.setAttribute('cy', '70');
+        } else {
+          progressEl.setAttribute('r', '54');
+          progressEl.setAttribute('stroke-dasharray', circumference);
+          progressEl.parentElement.setAttribute('viewBox', '0 0 120 120');
+          progressEl.setAttribute('cx', '60');
+          progressEl.setAttribute('cy', '60');
+        }
       }
     }
 
