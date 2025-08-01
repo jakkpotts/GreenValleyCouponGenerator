@@ -6,31 +6,28 @@
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <style>
     body {
-      background: #f8f9fa;
+      background: #f3f4f6;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+      padding: 24px;
       margin: 0;
-      padding: 0;
-      height: 100vh;
-      overflow: hidden;
-      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
-
     .form-container {
       max-width: 420px;
       width: 100%;
-      margin: 24px auto;
+      margin-bottom: 24px;
       background: #fff;
       padding: 16px;
       border-radius: 16px;
       box-shadow: 0 6px 20px rgba(0,0,0,0.1);
     }
-
     label {
       display: block;
       margin: 8px 0 4px;
       font-weight: bold;
     }
-
     select, input {
       width: 100%;
       padding: 8px;
@@ -38,7 +35,6 @@
       border: 1px solid #ccc;
       margin-bottom: 12px;
     }
-
     button {
       width: 100%;
       padding: 12px;
@@ -49,451 +45,78 @@
       font-size: 16px;
       cursor: pointer;
     }
-
     .geo-btn {
       background: #007bff;
       margin-bottom: 12px;
     }
-
-    /* Main coupon container */
-    .coupon-container {
-      position: relative;
-      height: 100vh;
-      overflow: hidden;
-      display: none;
-    }
-
-    /* Top section with background image */
-    .top-section {
-      position: relative;
-      height: 60vh;
-      background: linear-gradient(to right, #4CAF50, #FF9800);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-
-    .background-content {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 200px;
-      height: 120px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 20px;
-    }
-
-    /* Drinks background */
-    .drinks-background {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 20px;
-    }
-
-    .drink-cup {
-      width: 80px;
-      height: 100px;
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .drink-cup::before {
-      content: '';
-      position: absolute;
-      top: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 60px;
-      height: 70px;
-      background: #8B4513;
-      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-    }
-
-    .cup-logo {
-      position: absolute;
-      top: 15px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 30px;
-      height: 30px;
-      background: white;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      color: #4CAF50;
-      font-size: 16px;
-    }
-
-    .cup-logo::after {
-      content: 'Green Valley Grocery';
-      position: absolute;
-      top: 35px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 8px;
-      white-space: nowrap;
-      color: #333;
-    }
-
-    .straw {
-      position: absolute;
-      top: -5px;
-      right: 10px;
-      width: 4px;
-      height: 20px;
-      background: #4CAF50;
-      border-radius: 2px;
-    }
-
-    /* Coffee background */
-    .coffee-background {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 20px;
-    }
-
-    .coffee-cup {
-      width: 70px;
-      height: 90px;
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .coffee-cup::before {
-      content: '';
-      position: absolute;
-      top: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 50px;
-      height: 60px;
-      background: #6F4E37;
-      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-    }
-
-    .coffee-steam {
-      position: absolute;
-      top: -15px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 20px;
-      height: 20px;
-      background: rgba(255, 255, 255, 0.6);
-      border-radius: 50%;
-      animation: steam 2s infinite;
-    }
-
-    @keyframes steam {
-      0%, 100% { opacity: 0.3; transform: translateX(-50%) scale(0.8); }
-      50% { opacity: 0.8; transform: translateX(-50%) scale(1.2); }
-    }
-
-    /* Sports drink background */
-    .sports-background {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 20px;
-    }
-
-    .sports-bottle {
-      width: 60px;
-      height: 120px;
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 20px;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .sports-bottle::before {
-      content: '';
-      position: absolute;
-      top: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 40px;
-      height: 80px;
-      background: #00CED1;
-      border-radius: 15px;
-    }
-
-    .bottle-cap {
-      position: absolute;
-      top: -5px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 30px;
-      height: 15px;
-      background: #FFD700;
-      border-radius: 15px 15px 0 0;
-    }
-
-    /* Candy background */
-    .candy-background {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 15px;
-    }
-
-    .candy-bag {
-      width: 80px;
-      height: 100px;
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 20px;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .candy-bag::before {
-      content: '';
-      position: absolute;
-      top: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 60px;
-      height: 70px;
-      background: linear-gradient(45deg, #FF69B4, #FF1493, #FF69B4);
-      border-radius: 15px;
-    }
-
-    .candy-pieces {
-      position: absolute;
-      top: 15px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 50px;
-      height: 60px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2px;
-    }
-
-    .candy-piece {
-      width: 8px;
-      height: 8px;
-      background: #FF1493;
-      border-radius: 50%;
-    }
-
-    /* Water background */
-    .water-background {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 20px;
-    }
-
-    .water-bottle {
-      width: 60px;
-      height: 120px;
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 20px;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .water-bottle::before {
-      content: '';
-      position: absolute;
-      top: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 40px;
-      height: 80px;
-      background: #87CEEB;
-      border-radius: 15px;
-    }
-
-    .water-drops {
-      position: absolute;
-      top: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 20px;
-      height: 20px;
-      background: rgba(135, 206, 235, 0.6);
-      border-radius: 50%;
-      animation: drops 3s infinite;
-    }
-
-    @keyframes drops {
-      0%, 100% { opacity: 0.3; transform: translateX(-50%) scale(0.8); }
-      50% { opacity: 0.8; transform: translateX(-50%) scale(1.1); }
-    }
-
-    /* Coupon offer section */
-    .coupon-offer {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: white;
+    .card {
+      background: #fff;
+      border-radius: 24px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
       padding: 20px;
-      text-align: center;
-      border-radius: 20px 20px 0 0;
-    }
-
-    .offer-text {
-      font-size: 24px;
-      font-weight: bold;
-      color: #333;
-      margin-bottom: 8px;
-    }
-
-    .usage-badge {
-      display: inline-block;
-      background: #E3F2FD;
-      color: #1976D2;
-      padding: 4px 12px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 500;
-    }
-
-    /* Movable modal/card */
-    .movable-card {
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 90%;
-      max-width: 380px;
-      background: white;
-      border-radius: 20px 20px 0 0;
-      box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
-      padding: 20px;
-      cursor: grab;
-      user-select: none;
-      touch-action: none;
-      z-index: 100;
-    }
-
-    .movable-card:active {
-      cursor: grabbing;
-    }
-
-    .drag-handle {
-      width: 40px;
-      height: 4px;
-      background: #ddd;
-      border-radius: 2px;
-      margin: 0 auto 20px;
-    }
-
-    .barcode-container {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .barcode-img {
+      max-width: 420px;
       width: 100%;
-      max-width: 280px;
-      height: 60px;
-      object-fit: contain;
+      text-align: center;
     }
-
+    .header {
+      background: linear-gradient(to right, #1e7f3f, #3cb94b);
+      border-radius: 16px;
+      padding: 16px;
+      color: white;
+      margin-bottom: 16px;
+    }
+    .header .brand {
+      font-size: 13px;
+      letter-spacing: 1px;
+    }
+    .header .product {
+      font-size: 26px;
+      font-weight: bold;
+    }
+    .barcode-img {
+      margin-top: 12px;
+      width: 100%;
+      max-width: 320px;
+    }
     .instruction {
       font-size: 18px;
       font-weight: 500;
-      text-align: center;
-      margin: 20px 0;
-      color: #333;
+      margin: 24px 0;
     }
-
-    .timer-container {
-      text-align: center;
-      margin: 20px 0;
-    }
-
     .circle-timer {
       width: 120px;
       height: 120px;
       border-radius: 50%;
       border: 8px solid #e0e0e0;
-      border-top-color: #4CAF50;
-      position: relative;
+      border-top-color: #1e7f3f;
+      animation: spin 10s linear infinite;
       margin: 0 auto 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
     }
-
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
     .timer {
-      font-size: 32px;
+      font-family: -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+      font-size: 42px;
       font-weight: 600;
-      color: #333;
       margin-bottom: 4px;
+      color: #1e1e1e;
     }
-
     .subtext {
-      font-size: 12px;
-      color: #666;
-      line-height: 1.2;
-    }
-
-    .location-bar {
-      background: #f5f5f5;
-      padding: 12px 16px;
-      border-radius: 20px;
-      margin: 20px 0;
-      display: flex;
-      align-items: center;
-      gap: 8px;
       font-size: 14px;
-      color: #666;
+      color: #555;
     }
-
-    .location-icon {
-      width: 16px;
-      height: 16px;
-      background: #999;
-      border-radius: 50%;
-      position: relative;
+    .location {
+      font-size: 14px;
+      margin: 20px 0;
+      color: #333;
     }
-
-    .location-icon::before {
-      content: '';
-      position: absolute;
-      top: 2px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 0;
-      height: 0;
-      border-left: 4px solid transparent;
-      border-right: 4px solid transparent;
-      border-bottom: 6px solid #999;
-    }
-
-    .action-buttons {
+    .buttons {
       display: flex;
       gap: 12px;
-      margin-top: 20px;
+      margin-top: 12px;
     }
-
     .btn {
       flex: 1;
       padding: 14px;
@@ -504,30 +127,18 @@
       color: white;
       cursor: pointer;
     }
-
     .btn-decline {
       background: #2c3e50;
     }
-
     .btn-accept {
-      background: #4CAF50;
+      background: #1e7f3f;
     }
-
     canvas {
       position: fixed;
       top: 0;
       left: 0;
       pointer-events: none;
       z-index: 9999;
-    }
-
-    /* Hide form when coupon is shown */
-    .coupon-container.show {
-      display: block;
-    }
-
-    .form-container.hide {
-      display: none;
     }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
@@ -543,131 +154,54 @@
       <option value="489146011338|LARGE FOUNTAIN DRINK">Large Fountain Drink</option>
     </select>
     <label for="address">Store Location</label>
-    <input type="text" id="address" placeholder="e.g. 123 Main St" value="3680 S. Decatur Blvd, Las Vegas, NV 89103"/>
+    <input type="text" id="address" placeholder="e.g. 123 Main St" value="4919 W. Sahara Ave, Las Vegas, NV 89146"/>
     <button type="button" class="geo-btn" onclick="fillLocationFromGPS()">Use My Current Location</button>
     <button onclick="generateCoupon()">Generate Coupon</button>
   </div>
 
-      <div class="coupon-container" id="coupon-container">
-      <div class="top-section" id="top-section">
-        <div class="background-content" id="background-content">
-          <!-- Background content will be dynamically generated -->
-        </div>
-        <div class="coupon-offer" id="coupon-offer">
-          <div class="offer-text" id="offer-text">FREE One (1) Large Fountain Drink</div>
-          <div class="usage-badge">One Time Use Only</div>
-        </div>
-      </div>
-
-    <div class="movable-card" id="movable-card">
-      <div class="drag-handle"></div>
-      <div class="barcode-container">
-        <img class="barcode-img" id="barcode-img" />
-      </div>
-      <div class="instruction">Show your phone to the cashier</div>
-      <div class="timer-container">
-        <div class="circle-timer">
-          <div class="timer" id="timer">14:43</div>
-          <div class="subtext">minutes left to redeem</div>
-          <div class="subtext" id="expires-at">08/01/25 4:32 AM</div>
-        </div>
-      </div>
-      <div class="location-bar">
-        <div class="location-icon"></div>
-        <span id="location">3680 S. Decatur Blvd, Las Vegas, NV 89103</span>
-      </div>
-      <div class="action-buttons">
-        <button class="btn btn-decline" onclick="resetForm()">Coupon Not Accepted</button>
-        <button class="btn btn-accept" onclick="celebrateAndReset()">Coupon Accepted</button>
-      </div>
+  <div class="card" id="coupon-card" style="display: none;">
+    <div class="header">
+      <div class="brand" id="brand-text">SIGNATURE</div>
+      <div class="product" id="product-text"></div>
+    </div>
+    <img class="barcode-img" id="barcode-img" />
+    <div class="instruction">Show your phone<br>to the cashier</div>
+    <div class="circle-timer"></div>
+    <div class="timer" id="timer">06:34</div>
+    <div class="subtext">minutes left to redeem</div>
+    <div class="subtext" id="expires-at"></div>
+    <div class="location" id="location">Loading...</div>
+    <div class="buttons">
+      <button class="btn btn-decline" onclick="resetForm()">Coupon Not Accepted</button>
+      <button class="btn btn-accept" onclick="celebrateAndReset()">Coupon Accepted</button>
     </div>
   </div>
 
   <script>
-    // Draggable functionality
-    let isDragging = false;
-    let startY = 0;
-    let startTranslateY = 0;
-    let currentTranslateY = 0;
-
-    const movableCard = document.getElementById('movable-card');
-    const container = document.getElementById('coupon-container');
-
-    function initDraggable() {
-      movableCard.addEventListener('mousedown', startDragging);
-      movableCard.addEventListener('touchstart', startDragging);
-      document.addEventListener('mousemove', drag);
-      document.addEventListener('touchmove', drag);
-      document.addEventListener('mouseup', stopDragging);
-      document.addEventListener('touchend', stopDragging);
-    }
-
-    function startDragging(e) {
-      isDragging = true;
-      const clientY = e.type === 'mousedown' ? e.clientY : e.touches[0].clientY;
-      startY = clientY;
-      startTranslateY = currentTranslateY;
-      movableCard.style.transition = 'none';
-    }
-
-    function drag(e) {
-      if (!isDragging) return;
-      e.preventDefault();
-      const clientY = e.type === 'mousemove' ? e.clientY : e.touches[0].clientY;
-      const diffY = clientY - startY;
-      currentTranslateY = startTranslateY + diffY;
-      
-      // Limit the drag range
-      const maxUp = -200;
-      const maxDown = 100;
-      currentTranslateY = Math.max(maxUp, Math.min(maxDown, currentTranslateY));
-      
-      movableCard.style.transform = `translateX(-50%) translateY(${currentTranslateY}px)`;
-    }
-
-    function stopDragging() {
-      isDragging = false;
-      movableCard.style.transition = 'transform 0.3s ease-out';
-      
-      // Snap to nearest position
-      if (currentTranslateY < -100) {
-        currentTranslateY = -200;
-      } else if (currentTranslateY > 50) {
-        currentTranslateY = 100;
-      } else {
-        currentTranslateY = 0;
-      }
-      
-      movableCard.style.transform = `translateX(-50%) translateY(${currentTranslateY}px)`;
-    }
-
     function generateCoupon() {
       const select = document.getElementById("product-select");
       const [barcode, product] = select.value.split("|");
+      const brand = "";
       const address = document.getElementById("address").value.trim();
 
       const now = new Date();
-      const expires = new Date(now.getTime() + 14 * 60000 + 43000);
+      const expires = new Date(now.getTime() + 6 * 60000 + 34000);
       const formatted = expires.toLocaleString("en-US", {
         month: "2-digit", day: "2-digit", year: "2-digit",
         hour: "2-digit", minute: "2-digit", hour12: true
       });
 
-      // Generate background content based on product
-      generateBackgroundContent(product);
-      
-      // Generate offer text based on product
-      generateOfferText(product);
-
+      document.getElementById("brand-text").textContent = brand;
+      document.getElementById("product-text").textContent = product;
       document.getElementById("barcode-img").src =
         `https://barcode.tec-it.com/barcode.ashx?data=${barcode}&code=UPCA&dpi=96&translate-esc=false&hidehrt=true`;
       document.getElementById("expires-at").textContent = formatted;
       document.getElementById("location").textContent = address || "Address not provided.";
 
-      document.getElementById("coupon-container").classList.add("show");
-      document.getElementById("form-container").classList.add("hide");
+      document.getElementById("coupon-card").style.display = "block";
+      document.getElementById("form-container").style.display = "none";
 
-      let seconds = 14 * 60 + 43;
+      let seconds = 6 * 60 + 34;
       const timerEl = document.getElementById("timer");
       clearInterval(window._timerInterval);
       window._timerInterval = setInterval(() => {
@@ -677,120 +211,12 @@
         const s = String(seconds % 60).padStart(2, "0");
         timerEl.textContent = `${m}:${s}`;
       }, 1000);
-
-      // Initialize draggable after showing the coupon
-      setTimeout(initDraggable, 100);
-    }
-
-    function generateBackgroundContent(product) {
-      const backgroundContent = document.getElementById("background-content");
-      let html = '';
-
-      if (product.includes("FOUNTAIN DRINK")) {
-        html = `
-          <div class="drinks-background">
-            <div class="drink-cup">
-              <div class="cup-logo">G</div>
-            </div>
-            <div class="drink-cup">
-              <div class="cup-logo">G</div>
-              <div class="straw"></div>
-            </div>
-          </div>
-        `;
-      } else if (product.includes("COSTA")) {
-        html = `
-          <div class="coffee-background">
-            <div class="coffee-cup">
-              <div class="cup-logo">G</div>
-              <div class="coffee-steam"></div>
-            </div>
-            <div class="coffee-cup">
-              <div class="cup-logo">G</div>
-              <div class="coffee-steam"></div>
-            </div>
-          </div>
-        `;
-      } else if (product.includes("BODYARMOR")) {
-        html = `
-          <div class="sports-background">
-            <div class="sports-bottle">
-              <div class="cup-logo">G</div>
-              <div class="bottle-cap"></div>
-            </div>
-            <div class="sports-bottle">
-              <div class="cup-logo">G</div>
-              <div class="bottle-cap"></div>
-            </div>
-          </div>
-        `;
-      } else if (product.includes("HARIBO")) {
-        html = `
-          <div class="candy-background">
-            <div class="candy-bag">
-              <div class="cup-logo">G</div>
-              <div class="candy-pieces">
-                <div class="candy-piece"></div>
-                <div class="candy-piece"></div>
-                <div class="candy-piece"></div>
-                <div class="candy-piece"></div>
-                <div class="candy-piece"></div>
-                <div class="candy-piece"></div>
-              </div>
-            </div>
-            <div class="candy-bag">
-              <div class="cup-logo">G</div>
-              <div class="candy-pieces">
-                <div class="candy-piece"></div>
-                <div class="candy-piece"></div>
-                <div class="candy-piece"></div>
-                <div class="candy-piece"></div>
-                <div class="candy-piece"></div>
-                <div class="candy-piece"></div>
-              </div>
-            </div>
-          </div>
-        `;
-      } else if (product.includes("GATORADE WATER")) {
-        html = `
-          <div class="water-background">
-            <div class="water-bottle">
-              <div class="cup-logo">G</div>
-              <div class="water-drops"></div>
-            </div>
-            <div class="water-bottle">
-              <div class="cup-logo">G</div>
-              <div class="water-drops"></div>
-            </div>
-          </div>
-        `;
-      }
-
-      backgroundContent.innerHTML = html;
-    }
-
-    function generateOfferText(product) {
-      const offerText = document.getElementById("offer-text");
-      
-      if (product.includes("FOUNTAIN DRINK")) {
-        offerText.textContent = "FREE One (1) Large Fountain Drink";
-      } else if (product.includes("COSTA")) {
-        offerText.textContent = "FREE One (1) Costa Iced Coffee";
-      } else if (product.includes("BODYARMOR")) {
-        offerText.textContent = "FREE One (1) Bodyarmor I.V.";
-      } else if (product.includes("HARIBO")) {
-        offerText.textContent = "FREE One (1) Haribo Gummy Bears 2oz";
-      } else if (product.includes("GATORADE WATER")) {
-        offerText.textContent = "FREE One (1) Gatorade Water";
-      }
     }
 
     function resetForm() {
       clearInterval(window._timerInterval);
-      document.getElementById("coupon-container").classList.remove("show");
-      document.getElementById("form-container").classList.remove("hide");
-      currentTranslateY = 0;
-      movableCard.style.transform = `translateX(-50%) translateY(0px)`;
+      document.getElementById("coupon-card").style.display = "none";
+      document.getElementById("form-container").style.display = "block";
     }
 
     function celebrateAndReset() {
