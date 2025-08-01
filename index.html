@@ -74,13 +74,21 @@
       overflow: hidden;
     }
 
-    .drinks-background {
+    .background-content {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       width: 200px;
       height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    /* Drinks background */
+    .drinks-background {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -146,6 +154,194 @@
       height: 20px;
       background: #4CAF50;
       border-radius: 2px;
+    }
+
+    /* Coffee background */
+    .coffee-background {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .coffee-cup {
+      width: 70px;
+      height: 90px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .coffee-cup::before {
+      content: '';
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 60px;
+      background: #6F4E37;
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    }
+
+    .coffee-steam {
+      position: absolute;
+      top: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 20px;
+      background: rgba(255, 255, 255, 0.6);
+      border-radius: 50%;
+      animation: steam 2s infinite;
+    }
+
+    @keyframes steam {
+      0%, 100% { opacity: 0.3; transform: translateX(-50%) scale(0.8); }
+      50% { opacity: 0.8; transform: translateX(-50%) scale(1.2); }
+    }
+
+    /* Sports drink background */
+    .sports-background {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .sports-bottle {
+      width: 60px;
+      height: 120px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 20px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .sports-bottle::before {
+      content: '';
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      height: 80px;
+      background: #00CED1;
+      border-radius: 15px;
+    }
+
+    .bottle-cap {
+      position: absolute;
+      top: -5px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 30px;
+      height: 15px;
+      background: #FFD700;
+      border-radius: 15px 15px 0 0;
+    }
+
+    /* Candy background */
+    .candy-background {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .candy-bag {
+      width: 80px;
+      height: 100px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 20px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .candy-bag::before {
+      content: '';
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 70px;
+      background: linear-gradient(45deg, #FF69B4, #FF1493, #FF69B4);
+      border-radius: 15px;
+    }
+
+    .candy-pieces {
+      position: absolute;
+      top: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 60px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2px;
+    }
+
+    .candy-piece {
+      width: 8px;
+      height: 8px;
+      background: #FF1493;
+      border-radius: 50%;
+    }
+
+    /* Water background */
+    .water-background {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .water-bottle {
+      width: 60px;
+      height: 120px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 20px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .water-bottle::before {
+      content: '';
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      height: 80px;
+      background: #87CEEB;
+      border-radius: 15px;
+    }
+
+    .water-drops {
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 20px;
+      background: rgba(135, 206, 235, 0.6);
+      border-radius: 50%;
+      animation: drops 3s infinite;
+    }
+
+    @keyframes drops {
+      0%, 100% { opacity: 0.3; transform: translateX(-50%) scale(0.8); }
+      50% { opacity: 0.8; transform: translateX(-50%) scale(1.1); }
     }
 
     /* Coupon offer section */
@@ -352,22 +548,16 @@
     <button onclick="generateCoupon()">Generate Coupon</button>
   </div>
 
-  <div class="coupon-container" id="coupon-container">
-    <div class="top-section">
-      <div class="drinks-background">
-        <div class="drink-cup">
-          <div class="cup-logo">G</div>
+      <div class="coupon-container" id="coupon-container">
+      <div class="top-section" id="top-section">
+        <div class="background-content" id="background-content">
+          <!-- Background content will be dynamically generated -->
         </div>
-        <div class="drink-cup">
-          <div class="cup-logo">G</div>
-          <div class="straw"></div>
+        <div class="coupon-offer" id="coupon-offer">
+          <div class="offer-text" id="offer-text">FREE One (1) Large Fountain Drink</div>
+          <div class="usage-badge">One Time Use Only</div>
         </div>
       </div>
-      <div class="coupon-offer">
-        <div class="offer-text">FREE One (1) Large Fountain Drink</div>
-        <div class="usage-badge">One Time Use Only</div>
-      </div>
-    </div>
 
     <div class="movable-card" id="movable-card">
       <div class="drag-handle"></div>
@@ -463,6 +653,12 @@
         hour: "2-digit", minute: "2-digit", hour12: true
       });
 
+      // Generate background content based on product
+      generateBackgroundContent(product);
+      
+      // Generate offer text based on product
+      generateOfferText(product);
+
       document.getElementById("barcode-img").src =
         `https://barcode.tec-it.com/barcode.ashx?data=${barcode}&code=UPCA&dpi=96&translate-esc=false&hidehrt=true`;
       document.getElementById("expires-at").textContent = formatted;
@@ -484,6 +680,109 @@
 
       // Initialize draggable after showing the coupon
       setTimeout(initDraggable, 100);
+    }
+
+    function generateBackgroundContent(product) {
+      const backgroundContent = document.getElementById("background-content");
+      let html = '';
+
+      if (product.includes("FOUNTAIN DRINK")) {
+        html = `
+          <div class="drinks-background">
+            <div class="drink-cup">
+              <div class="cup-logo">G</div>
+            </div>
+            <div class="drink-cup">
+              <div class="cup-logo">G</div>
+              <div class="straw"></div>
+            </div>
+          </div>
+        `;
+      } else if (product.includes("COSTA")) {
+        html = `
+          <div class="coffee-background">
+            <div class="coffee-cup">
+              <div class="cup-logo">G</div>
+              <div class="coffee-steam"></div>
+            </div>
+            <div class="coffee-cup">
+              <div class="cup-logo">G</div>
+              <div class="coffee-steam"></div>
+            </div>
+          </div>
+        `;
+      } else if (product.includes("BODYARMOR")) {
+        html = `
+          <div class="sports-background">
+            <div class="sports-bottle">
+              <div class="cup-logo">G</div>
+              <div class="bottle-cap"></div>
+            </div>
+            <div class="sports-bottle">
+              <div class="cup-logo">G</div>
+              <div class="bottle-cap"></div>
+            </div>
+          </div>
+        `;
+      } else if (product.includes("HARIBO")) {
+        html = `
+          <div class="candy-background">
+            <div class="candy-bag">
+              <div class="cup-logo">G</div>
+              <div class="candy-pieces">
+                <div class="candy-piece"></div>
+                <div class="candy-piece"></div>
+                <div class="candy-piece"></div>
+                <div class="candy-piece"></div>
+                <div class="candy-piece"></div>
+                <div class="candy-piece"></div>
+              </div>
+            </div>
+            <div class="candy-bag">
+              <div class="cup-logo">G</div>
+              <div class="candy-pieces">
+                <div class="candy-piece"></div>
+                <div class="candy-piece"></div>
+                <div class="candy-piece"></div>
+                <div class="candy-piece"></div>
+                <div class="candy-piece"></div>
+                <div class="candy-piece"></div>
+              </div>
+            </div>
+          </div>
+        `;
+      } else if (product.includes("GATORADE WATER")) {
+        html = `
+          <div class="water-background">
+            <div class="water-bottle">
+              <div class="cup-logo">G</div>
+              <div class="water-drops"></div>
+            </div>
+            <div class="water-bottle">
+              <div class="cup-logo">G</div>
+              <div class="water-drops"></div>
+            </div>
+          </div>
+        `;
+      }
+
+      backgroundContent.innerHTML = html;
+    }
+
+    function generateOfferText(product) {
+      const offerText = document.getElementById("offer-text");
+      
+      if (product.includes("FOUNTAIN DRINK")) {
+        offerText.textContent = "FREE One (1) Large Fountain Drink";
+      } else if (product.includes("COSTA")) {
+        offerText.textContent = "FREE One (1) Costa Iced Coffee";
+      } else if (product.includes("BODYARMOR")) {
+        offerText.textContent = "FREE One (1) Bodyarmor I.V.";
+      } else if (product.includes("HARIBO")) {
+        offerText.textContent = "FREE One (1) Haribo Gummy Bears 2oz";
+      } else if (product.includes("GATORADE WATER")) {
+        offerText.textContent = "FREE One (1) Gatorade Water";
+      }
     }
 
     function resetForm() {
