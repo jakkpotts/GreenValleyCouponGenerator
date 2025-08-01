@@ -1,27 +1,43 @@
 <!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>Green Valley Grocery - Coupon Generator</title>
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <style>
     body {
       background: #e5e5e5;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
-      padding: 24px;
+      padding: 12px;
       margin: 0;
       display: flex;
       flex-direction: column;
       align-items: center;
+      min-height: 100vh;
+      box-sizing: border-box;
+    }
+    
+    @media (min-width: 480px) {
+      body {
+        padding: 24px;
+      }
     }
     .form-container {
       max-width: 420px;
       width: 100%;
-      margin-bottom: 24px;
+      margin-bottom: 12px;
       background: #fff;
-      padding: 16px;
+      padding: 12px;
       border-radius: 16px;
       box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      box-sizing: border-box;
+    }
+    
+    @media (min-width: 480px) {
+      .form-container {
+        margin-bottom: 24px;
+        padding: 16px;
+      }
     }
     label {
       display: block;
@@ -34,6 +50,8 @@
       border-radius: 8px;
       border: 1px solid #ccc;
       margin-bottom: 12px;
+      box-sizing: border-box;
+      font-size: 16px;
     }
     button {
       width: 100%;
@@ -52,6 +70,14 @@
     .coupon-container {
       max-width: 380px;
       width: 100%;
+      box-sizing: border-box;
+    }
+    
+    @media (max-width: 400px) {
+      .coupon-container {
+        max-width: 100%;
+        margin: 0 -4px;
+      }
     }
     .header-card {
       background: #fff;
@@ -68,9 +94,15 @@
     }
     .header {
       background: linear-gradient(135deg, #1e7f3f 0%, #22a549 50%, #7eba3a 100%);
-      padding: 25px 20px;
+      padding: 20px 15px;
       text-align: center;
       position: relative;
+    }
+    
+    @media (min-width: 480px) {
+      .header {
+        padding: 25px 20px;
+      }
     }
     .logo-container {
       display: flex;
@@ -80,29 +112,58 @@
       margin-bottom: 8px;
     }
     .logo-img {
-      width: 60px;
-      height: 60px;
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
       object-fit: cover;
+      flex-shrink: 0;
+    }
+    
+    @media (min-width: 480px) {
+      .logo-img {
+        width: 60px;
+        height: 60px;
+      }
     }
     .brand-text {
       color: white;
+      text-align: center;
     }
     .brand-name {
-      font-size: 24px;
+      font-size: 20px;
       font-weight: 700;
-      line-height: 1.2;
+      line-height: 1.1;
+      margin: 0;
+      letter-spacing: 0.5px;
     }
     .brand-tagline {
       font-size: 14px;
-      font-weight: 400;
-      opacity: 0.9;
+      font-weight: 600;
+      opacity: 0.95;
+      margin: 0;
+      letter-spacing: 0.5px;
+      line-height: 1.1;
+    }
+    
+    @media (min-width: 480px) {
+      .brand-name {
+        font-size: 24px;
+      }
+      .brand-tagline {
+        font-size: 16px;
+      }
     }
     .offer-text {
       background: white;
-      padding: 20px;
+      padding: 15px;
       text-align: center;
       border-bottom: 1px solid #e0e0e0;
+    }
+    
+    @media (min-width: 480px) {
+      .offer-text {
+        padding: 20px;
+      }
     }
     .offer-main {
       font-size: 22px;
@@ -132,50 +193,89 @@
       display: block;
     }
     .instruction {
-      font-size: 22px;
+      font-size: 18px;
       font-weight: 500;
       color: #1a1a1a;
-      margin: 20px 0 25px;
+      margin: 15px 0 20px;
       text-align: center;
-      padding: 0 20px;
+      padding: 0 15px;
+    }
+    
+    @media (min-width: 480px) {
+      .instruction {
+        font-size: 22px;
+        margin: 20px 0 25px;
+        padding: 0 20px;
+      }
     }
     .timer-section {
       text-align: center;
-      padding: 0 20px 20px;
+      padding: 0 15px 15px;
       display: flex;
       flex-direction: column;
       align-items: center;
     }
+    
+    @media (min-width: 480px) {
+      .timer-section {
+        padding: 0 20px 20px;
+      }
+    }
     .circle-timer-container {
       position: relative;
-      width: 140px;
-      height: 140px;
+      width: 120px;
+      height: 120px;
       margin: 0 auto 15px;
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-shrink: 0;
     }
     .circle-timer {
-      width: 140px;
-      height: 140px;
+      width: 120px;
+      height: 120px;
       border-radius: 50%;
-      border: 8px solid #e0e0e0;
+      border: 6px solid #e0e0e0;
       position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
+      box-sizing: border-box;
+      aspect-ratio: 1;
     }
     .circle-timer-progress {
       position: absolute;
-      top: -8px;
-      left: -8px;
-      width: 140px;
-      height: 140px;
+      top: -6px;
+      left: -6px;
+      width: 120px;
+      height: 120px;
       border-radius: 50%;
-      border: 8px solid transparent;
+      border: 6px solid transparent;
       border-top-color: #22a549;
       transform: rotate(-90deg);
       transition: transform 1s linear;
+      box-sizing: border-box;
+      aspect-ratio: 1;
+    }
+    
+    @media (min-width: 480px) {
+      .circle-timer-container {
+        width: 140px;
+        height: 140px;
+      }
+      .circle-timer {
+        width: 140px;
+        height: 140px;
+        border: 8px solid #e0e0e0;
+      }
+      .circle-timer-progress {
+        top: -8px;
+        left: -8px;
+        width: 140px;
+        height: 140px;
+        border: 8px solid transparent;
+        border-top-color: #22a549;
+      }
     }
     .timer-content {
       position: absolute;
@@ -186,11 +286,17 @@
       z-index: 1;
     }
     .timer {
-      font-size: 36px;
+      font-size: 28px;
       font-weight: 600;
       color: #1a1a1a;
       line-height: 1;
       margin: 0;
+    }
+    
+    @media (min-width: 480px) {
+      .timer {
+        font-size: 36px;
+      }
     }
     .timer-label {
       font-size: 12px;
